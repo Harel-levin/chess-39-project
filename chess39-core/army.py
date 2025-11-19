@@ -1,6 +1,4 @@
 import random
-# The '.' in front of 'pieces' is important!
-# It tells Python: "import pieces.py from this same folder (package)"
 from .pieces import PieceType
 
 # --- Configuration from our project plan ---
@@ -13,7 +11,7 @@ MAJOR_PIECES = [
     PieceType.QUEEN,
     PieceType.ROOK,
     PieceType.BISHOP,
-    PieceType.KNIGHT,
+    PieceType.KNIGHT
 ]
 
 def generate_random_army():
@@ -87,16 +85,16 @@ if __name__ == "__main__":
         total_value = 0
         piece_counts = {}
 
+        print(f"Generated Army (pieces): {[piece.name for piece in new_army]}")
+
         for piece in new_army:
-            # Don't count the KING's value [cite: 65]
-            if piece != PieceType.KING:
-                total_value += piece.value
+            total_value += piece.value
 
             # Count the pieces for our summary
             piece_counts[piece.name] = piece_counts.get(piece.name, 0) + 1
 
         print(f"Generated Army (counts): {piece_counts}")
-        print(f"Total Value (excl. King): {total_value} points")
+        print(f"Total Value: {total_value} points")
 
         # Check our work
         if total_value == TARGET_POINTS:

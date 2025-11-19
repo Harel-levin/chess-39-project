@@ -60,7 +60,7 @@ class Board:
         king = army.pop(army.index(PieceType.KING))
         king_square = random.choice(rank_1_squares)
 
-        self.grid[king_square] = (king, 'W' if is_white else 'B')
+        self.grid[king_square] = (king, 'white' if is_white else 'black')
         rank_1_squares.remove(king_square)
 
         army.sort(key=lambda piece: piece == PieceType.PAWN, reverse=True)
@@ -75,32 +75,6 @@ class Board:
                 if rank_1_squares: # Make sure there is space
                     piece_square = rank_1_squares.pop(0)
                     self.grid[piece_square] = (piece, "white" if is_white else "black")
-        
-        def print_board(self):
-            """
-            Displays the current board state in the terminal.
-            This is our "visualizer" so we can see our work.
-            """
-            print("\n--- Chess 39 Board ---")
-            # We loop from 8 *down to* 1
-            for row in "87654321":
-                row_str = f"{row} | "
-                for col in "abcdefgh":
-                    square = f"{col}{row}"
-                    piece_data = self.grid[square] # This will be None or (PieceType, "color")
-
-                    if piece_data is None:
-                        row_str += ". "
-                    else:
-                        piece_type, color = piece_data
-                        symbol = PIECE_SYMBOLS[piece_type]
-                        # Show white as uppercase, black as lowercase
-                        row_str += f"{symbol.upper() if color == 'white' else symbol.lower()} "
-
-                print(row_str)
-
-            print("   -----------------")
-            print("    a b c d e f g h")
 
     def print_board(self):
         """
@@ -133,8 +107,12 @@ class Board:
 if __name__ == "__main__":
     print("--- Testing our Chess 39 Board Setup ---")
     board = Board()
-    board.setup_board()
     board.print_board()
+    board.setup_board()
+    board.grid["f3"] = (PieceType.QUEEN, "white")
+    board.print_board()
+    print({"a":2,"b":3})
+    
 
     print("\n--- Testing the Grid (Dictionary) ---")
     print(f"Piece at e1: {board.grid['e1']}")

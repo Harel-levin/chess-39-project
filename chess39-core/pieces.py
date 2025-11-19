@@ -21,15 +21,50 @@ class PieceType(enum.Enum):
     # We give it a value of 0 here to represent that.
     KING = 0
 
-# run this code if the file is run directly
+
+# Movement patterns for each piece type
+# Knights: exact offsets (L-shape moves)
+KNIGHT_MOVES = [
+    (2, 1), (2, -1), (-2, 1), (-2, -1),
+    (1, 2), (1, -2), (-1, 2), (-1, -2)
+]
+
+# King: one square in any direction
+KING_MOVES = [
+    (1, 0), (-1, 0), (0, 1), (0, -1),
+    (1, 1), (1, -1), (-1, 1), (-1, -1)
+]
+
+# Directions for sliding pieces
+ROOK_DIRECTIONS = [(1, 0), (-1, 0), (0, 1), (0, -1)]  # Orthogonal
+BISHOP_DIRECTIONS = [(1, 1), (1, -1), (-1, 1), (-1, -1)]  # Diagonal
+QUEEN_DIRECTIONS = ROOK_DIRECTIONS + BISHOP_DIRECTIONS  # Both
+
+
+def get_piece_directions(piece_type: PieceType):
+    """
+    Returns the movement directions for a given piece type.
+    For sliding pieces (rook, bishop, queen), returns direction vectors.
+    For jumping pieces (knight, king), returns exact offsets.
+    For pawns, use special pawn movement logic.
+    """
+    if piece_type == PieceType.KNIGHT:
+        return KNIGHT_MOVES
+    elif piece_type == PieceType.KING:
+        return KING_MOVES
+    elif piece_type == PieceType.ROOK:
+        return ROOK_DIRECTIONS
+    elif piece_type == PieceType.BISHOP:
+        return BISHOP_DIRECTIONS
+    elif piece_type == PieceType.QUEEN:
+        return QUEEN_DIRECTIONS
+    elif piece_type == PieceType.PAWN:
+        return None  # Pawns have special movement logic
+    return []
+
+
+# Simple test code to display all pieces and their values
 if __name__ == "__main__":
-    print("--- Testing our Chess 39 Piece Definitions ---")
-
-    # You can access the name and value of each piece
-    print(f"Piece: {PieceType.QUEEN.name}, Value: {PieceType.QUEEN.value} points")
-    print(f"Piece: {PieceType.PAWN.name}, Value: {PieceType.PAWN.value} point")
-
-    # Let's list all of them
     print("\nAll Pieces:")
     for piece in PieceType:
         print(f"  - {piece.name:6} (Value: {piece.value})")

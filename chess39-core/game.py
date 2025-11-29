@@ -5,11 +5,17 @@ This module contains the high-level Game class that manages game state,
 move validation, and win conditions for Chess 39.
 """
 
-import json
-from typing import Optional, Tuple, List, Dict
-from .pieces import PieceType, get_piece_directions, KNIGHT_MOVES, KING_MOVES
-from .board import Board
+from datetime import datetime
+from typing import Optional, Dict, List, Any, Tuple
+import copy
 
+# Handle imports - work both standalone and when imported
+try:
+    from pieces import PieceType, get_piece_directions, KNIGHT_MOVES, KING_MOVES
+    from board import Board
+except ImportError:
+    from .pieces import PieceType, get_piece_directions, KNIGHT_MOVES, KING_MOVES
+    from .board import Board
 
 class Game:
     """

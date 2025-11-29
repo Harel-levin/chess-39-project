@@ -1,5 +1,10 @@
 import random
-from .pieces import PieceType
+
+# Handle imports - work both standalone and when imported
+try:
+    from pieces import PieceType
+except ImportError:
+    from .pieces import PieceType
 
 # --- Configuration from our project plan ---
 TARGET_POINTS = 39  # 

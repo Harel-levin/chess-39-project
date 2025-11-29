@@ -1,7 +1,12 @@
 import random
 
-from .pieces import PieceType
-from .army import generate_random_army
+# Handle imports - work both standalone and when imported
+try:
+    from pieces import PieceType
+    from army import generate_random_army
+except ImportError:
+    from .pieces import PieceType
+    from .army import generate_random_army
 
 PIECE_SYMBOLS = {
     PieceType.PAWN: "P",

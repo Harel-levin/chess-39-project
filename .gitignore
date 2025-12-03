@@ -23,6 +23,10 @@ redis_data/
 # Test credentials (DO NOT COMMIT PASSWORDS!)
 TEST_CREDENTIALS.md
 
+# Documentation (internal guides)
+TESTING_GUIDE.md
+ARCHITECTURE.md
+
 # OS
 .DS_Store
 

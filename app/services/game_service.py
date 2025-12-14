@@ -9,7 +9,8 @@ from uuid import UUID
 from sqlalchemy.orm import Session
 
 # Add chess39-core to path
-chess_core_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../chess39-core'))
+# After restructuring, chess39-core is at root level, not backend/
+chess_core_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../chess39-core'))
 sys.path.insert(0, chess_core_path)
 
 from game import Game
